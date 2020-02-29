@@ -3,4 +3,34 @@
     color: white;
     padding: 10px;
   }
-  
+  .searchbox{
+    width: 200px;
+    padding:5px;
+    
+  }
+
+  input[type="text"]{
+    background-color: rgb(249, 249, 211);
+  }
+
+  .booksearchbar{
+    background-color: rgb(196, 189, 189)  ;
+    padding:10px;
+  }
+
+  .submitButton{
+    margin-left: 5px;
+    font-size:18px;
+    width:80px;
+  }
+
+  .submitButton:focus{
+
+  }
+  .submitButton,.searchbox{
+    vertical-align: middle;
+  }
+
+.bookItem{
+  list-style: none;
+}
