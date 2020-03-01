@@ -13,9 +13,14 @@
     background-color: rgb(249, 249, 211);
   }
 
-  .booksearchbar{
+  .booksearch_form{
     background-color: rgb(196, 189, 189)  ;
-    padding:10px;
+    padding-top:10px;
+  }
+
+  .filter{
+    background-color: rgb(245, 236, 236)  ;
+    padding:5px;   
   }
 
   .submitButton{
@@ -24,9 +29,6 @@
     width:80px;
   }
 
-  .submitButton:focus{
-
-  }
   .submitButton,.searchbox{
     vertical-align: middle;
   }
