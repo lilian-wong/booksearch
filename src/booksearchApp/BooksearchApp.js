@@ -17,23 +17,28 @@ class BooksearchApp extends React.Component{
         }
       }
 
+    findSearchedItem(item){
+        this.setState({
+            searchItem: item
+        })
+    }
+
     updatePrintFilter(printType){
-    this.setState({
-        printTypeOption: printType
-    })
+        this.setState({
+            printTypeOption: printType
+        })
     } 
     
     updateBookTypeFilter(bookType){
-    this.setState({
-        bookTypeOption: bookType
-    })
+        this.setState({
+            bookTypeOption: bookType
+        })
     }
 
     addSearchResult(data){
         this.setState({
             booklist:data
         })
-      console.log(data.length);
     }
     
     generateURLParam(url){
@@ -46,46 +51,39 @@ class BooksearchApp extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         const url = this.generateURLParam("https://www.googleapis.com/books/v1/volumes?");
-        // const url = "https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks";
-        // const option = {
-        //   method: 'GET',
-        //   headers:{
-        //     "key": "",
-        //     "content-Type":"application/json"
-        //   },
-        // }
-        // fetch(url,option)
-        fetch(url)
+        const option = {
+          method: 'GET'
+        }        
+        fetch(url,option)
         .then(response=> {
-        if(!response.ok){
-            throw new Error('Something went wrong, please try again later.');
-        }
-        return response;
-        })
+            if(!response.ok){
+                throw new Error('Something went wrong, please try again later.');
+                }
+                return response;
+            }
+        )
         .then(response => response.json())
         .then(result => {
-        this.addSearchResult(result.items)}
+            this.addSearchResult(result.items)}
         )
        
         .catch(error =>{
-        console.error('Error: ' + error);
-        })
-        
+            console.error('Error: ' + error);
+        })  
     }
 
 
     render(){
-
         return(
             <div className="BooksearchApp">
                 <header className="booksearchApp-header">
                     <h1>Google Book Search</h1>
                 </header>
                 <form className="booksearch_form" onSubmit= {e => this.handleSubmit(e)}>
-                    <SearchBox />
+                    <SearchBox searchItem = { item => this.findSearchedItem(item) }/>
                     <div className="filter">
-                        <PrintTypeFilter/>
-                        <BookTypeFilter/>
+                        <PrintTypeFilter printTypeFilter={ptype => this.updatePrintFilter(ptype)}/>
+                        <BookTypeFilter bookTypeFilter={btype => this.updateBookTypeFilter(btype)}/>
                     </div>
                 </form>
                 <Booklist booklist = {this.state.booklist}/>

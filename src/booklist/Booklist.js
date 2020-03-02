@@ -5,19 +5,22 @@ import Bookitem from '../bookitem/Bookitem';
 class Booklist extends Component{
     
     render(){
-        if(this.props.booklist.length===0){
+        if(!this.props.booklist){
             return <div></div>
         }
-        console.log(this.props.booklist);
         const booklist = this.props.booklist.map(
                 (book,i) => ( 
                     <Bookitem 
                     key = {i}
                     title={book.volumeInfo.title}
-                    thumbnail="thumbnail"
+                    thumbnail={book.volumeInfo.imageLinks.thumbnail}
                     authors={book.volumeInfo.authors}
-                    listPrice={"listPrice"}
-                    textSnippet={JSON.stringify(book.searchInfo.textSnippet)}
+                    listPrice={book.saleInfo.listPrice
+                                ?book.saleInfo.listPrice.amount
+                                :0}
+                    textSnippet={book.searchInfo
+                                ?book.searchInfo.textSnippet
+                                :''}
                     />
                 )  
         );
