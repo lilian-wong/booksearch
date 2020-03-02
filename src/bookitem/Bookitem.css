@@ -1,3 +1,14 @@
-.bookItem li{
-    white-space:pre;
+.result_wrapper{
+    padding: 50px;
+    display: flex;
+    height: auto;
+    width: auto;
+    justify-content: center;
+}
+img{
+    float: left;
+}
+
+.bookInfo{
+    width: 80%;
 }
